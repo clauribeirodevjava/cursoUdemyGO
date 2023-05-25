@@ -8,16 +8,53 @@ import (
 func main() {
 
 	fmt.Println("inicializando..")
-	retangulo := retangulo{
-		largura: 2,
-		altura:  1,
+	// retangulo := retangulo{
+	// 	largura: 2,
+	// 	altura:  1,
+	// }
+	// circulo := circulo{
+	// 	radius: 3,
+	// }
+
+	//ExibeGeometria(retangulo)
+	////ExibeGeometria(circulo)
+	// p := ProblemaDeNetwork{
+	// 	rede:     true,
+	// 	hardware: false,
+	// }
+	// ExibeError(p)
+
+	var lista []interface{}
+
+	lista = append(lista, 10)
+	lista = append(lista, true)
+	lista = append(lista, "teste")
+	for _, valor := range lista {
+		if v, ok := valor.(string); ok {
+			fmt.Println(v + "string")
+		} else {
+			fmt.Println(v + "não string")
+		}
 	}
-	circulo := circulo{
-		radius: 3,
+}
+func ExibeError(e error) {
+	fmt.Println(e.Error())
+}
+
+type ProblemaDeNetwork struct {
+	rede     bool
+	hardware bool
+}
+
+func (p ProblemaDeNetwork) Error() string {
+	if p.rede {
+		return "problema de rede"
+	} else if p.hardware {
+		return "problema de hardware"
+	} else {
+		return "outro problema"
 	}
 
-	ExibeGeometria(retangulo)
-	ExibeGeometria(circulo)
 }
 
 type geometria interface {
